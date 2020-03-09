@@ -1,0 +1,5 @@
+folderpath  D:\UTCN\probleme.txt
+username bucur_david
+password Ferrari2390
+
+#folderpath nu trebuie sa contina spatii
