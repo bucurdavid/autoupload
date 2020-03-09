@@ -1,5 +1,8 @@
-folderpath  D:\UTCN\probleme.txt
-username bucur_david
-password Ferrari2390
+folderpath  D:\UTCN\probleme
+username example
+password example1243
 
-#folderpath nu trebuie sa contina spatii
+#folderpath it should not contain spaces
+
+#the spaces in this file must remain the same
+-----EX-----: username example
