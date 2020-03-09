@@ -28,53 +28,43 @@ def information():
 #login varialbes and folder path
 username,password,folderPath=information()
 
+
+#Connecting to the website 
 os.chdir(folderPath)
 fileName=os.listdir()
-print('This are the elements for upload:\n')
-count=0
-for elements in fileName:
-    if(labName in elements):
-        count+=1
-        print(elements)
-print("\nYou have ", count,"elements for upload:\n")
-answer=input("Do you want to continue? [y/n]")
-if(answer=="y"):
-    #Connecting to the website 
-    driver=webdriver.Chrome('D:\py\chromedriver')
-    driver.get('https://helios.utcluj.ro/learn2code/login.php?SID')
-    try:
-        usernameInput=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[1]/td[2]/input')
-        usernameInput.send_keys(username)
-        passwordInput=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[2]/td[2]/input')
-        passwordInput.send_keys(password)
-        loginBtn=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[4]/td/button')
-        loginBtn.click()
-    except:
-        print("An error occured!, Please try again")
+driver=webdriver.Chrome('chromedriver')
+driver.get('https://helios.utcluj.ro/learn2code/login.php?SID')
+try:
+    usernameInput=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[1]/td[2]/input')
+    usernameInput.send_keys(username)
+    passwordInput=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[2]/td[2]/input')
+    passwordInput.send_keys(password)
+    loginBtn=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[4]/td/button')
+    loginBtn.click()
+except:
+    print("An error occured!, Please try again")
 
-    #after login selecting the lab you want 
+#after login selecting the lab you want 
+try:
+    workarea=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[1]/div/table/tbody/tr[3]/td')
+    workarea.click()
+    time.sleep(3)
+    #add_link[int(lab)].click()
+    print('The ',labName,' is selected')
+        #moving the os path where the txt files are located
     try:
-        workarea=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[1]/div/table/tbody/tr[3]/td')
-        workarea.click()
-        time.sleep(3)
-        #add_link[int(lab)].click()
-        print('The ',labName,' is selected')
-            #moving the os path where the txt files are located
-        try:
-                for elements in fileName:
-                    if(labName in elements):
-                        add_link=driver.find_elements_by_class_name('href2')
-                        add_link.reverse()
-                        add_link[int(row)-1].click()
-                        link=folderPath+'\\'+elements
-                        uploadBtn=driver.find_element_by_class_name('input1').send_keys(link)
-                        save=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[7]/td/button')
-                        save.click()
-                        print(elements,' was uploaded!')                  
-        except:
-            print("Error! Run again!")   
+            for elements in fileName:
+                if(labName in elements):
+                    add_link=driver.find_elements_by_class_name('href2')
+                    add_link.reverse()
+                    add_link[int(row)-1].click()
+                    link=folderPath+'\\'+elements
+                    uploadBtn=driver.find_element_by_class_name('input1').send_keys(link)
+                    save=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[7]/td/button')
+                    save.click()
+                    print(elements,' was uploaded!')                  
     except:
-        print("Error!Maybe the lab dosn't exist!")
-else:
-    exit
+        print("Error! Run again!")   
+except:
+    print("Error!Maybe the lab dosn't exist!")
         
