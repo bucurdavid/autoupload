@@ -3,7 +3,7 @@ import time
 from selenium import webdriver
 import pickle
 
-lab=input('In wich lab do you want to upload (ex: 1,2,3) :')
+lab=input('What lab do you want to upload (ex: 1,2,3) :')
 print('**************************************************************************')
 row=input('\nPlease count\nHow many these "[add new file]" are up to your lab(inclusive): ')
 if(int(lab)<10):
@@ -28,8 +28,8 @@ def information():
 #login varialbes and folder path
 username,password,folderPath=information()
 
-
 #Connecting to the website 
+#moving the os path where the txt files are located
 os.chdir(folderPath)
 fileName=os.listdir()
 driver=webdriver.Chrome('chromedriver')
@@ -49,9 +49,8 @@ try:
     workarea=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[1]/div/table/tbody/tr[3]/td')
     workarea.click()
     time.sleep(3)
-    #add_link[int(lab)].click()
     print('The ',labName,' is selected')
-        #moving the os path where the txt files are located
+        
     time.sleep(1)
     extension='.txt'
     try:
@@ -63,9 +62,9 @@ try:
                     uploadBtn=driver.find_element_by_class_name('input1').send_keys(link)
                     save=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[7]/td/button')
                     save.click()
-                    print(elements,' was uploaded!')                  
+                    print(elements,' was uploaded!')              
     except:
         print("Error! Run again!")   
 except:
-    print("Error!Maybe the lab dosn't exist!")
-        
+    print("Error!")
+exit
