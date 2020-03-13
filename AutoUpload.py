@@ -9,7 +9,7 @@ row=input('\nPlease count\nHow many these "[add new file]" are up to your lab(in
 if(int(lab)<10):
     labName='lab0'+lab
 else:
-    labName='lab'+lab    
+    labName='lab'+lab  
 
 print(labName)
 
@@ -48,10 +48,9 @@ except:
 try:
     workarea=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[1]/div/table/tbody/tr[3]/td')
     workarea.click()
-    time.sleep(3)
     print('The ',labName,' is selected')
         
-    time.sleep(1)
+    time.sleep(3)
     extension='.txt'
     try:
             for elements in fileName:
