@@ -52,11 +52,12 @@ try:
     #add_link[int(lab)].click()
     print('The ',labName,' is selected')
         #moving the os path where the txt files are located
+    time.sleep(1)
+    extension='.txt'
     try:
             for elements in fileName:
-                if(labName in elements):
+                if(labName in elements and extension in elements):
                     add_link=driver.find_elements_by_class_name('href2')
-                    add_link.reverse()
                     add_link[int(row)-1].click()
                     link=folderPath+'\\'+elements
                     uploadBtn=driver.find_element_by_class_name('input1').send_keys(link)
