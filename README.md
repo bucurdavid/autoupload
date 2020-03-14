@@ -1,9 +1,10 @@
 # autoupload
-AutoUpload program for UTCN helios webiste
-------------------------Setup------------------------------
-For MAC users:
+AutoUpload program for UTCN helios webiste<br />
+------------------------Setup------------------------------<br />
+
+For MAC users:<br />
 1.You need to install python<br />
-2.Delete the zip
+2.Delete the zip<br />
 3.In the "info.txt" change with your information<br />
 4.Open a terminal in the folder where "AutoUpload" is located<br />
 5.Type ' chmod +x AutoUpload.py '<br />
