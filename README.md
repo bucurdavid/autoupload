@@ -6,7 +6,7 @@ AutoUpload program for UTCN helios webiste
 3.The txt files need to contain the word "lab" and wich one. ex: lab01-lab13<br />
 4.In the "info" file you need to add your username and passowrd<br />
 
-!!!! 
+!!!!   I also added an executable for windows !!!!!!
 
 Link python:
 
