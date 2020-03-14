@@ -1,12 +1,21 @@
 # autoupload
 AutoUpload program for UTCN helios webiste
+------------------------Setup------------------------------
+For MAC users:
+1.You need to install python<br />
+2.Delete the zip
+3.In the "info.txt" change with your information<br />
+4.Open a terminal in the folder where "AutoUpload" is located<br />
+5.Type ' chmod +x AutoUpload.py '<br />
+6.Double click AutoUpload.py 
 
-1. You need to install python<br />
-2.in the "info" file you need to set a path where all your lab txt files are saved<br />
-3.The txt files need to contain the word "lab" and wich one. ex: lab01-lab13<br />
-4.In the "info" file you need to add your username and passowrd<br />
+For Windows user: 
+<br />
+1.Download the zip from this repository <br />
+2.Unzip<br />
+3.Go to " info.txt" change with your information<br />
+4.Run AutoUpload<br />
 
-!!!!   I also added an executable for windows !!!!!!
 
 Link python:
 
