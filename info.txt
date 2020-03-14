@@ -1,6 +1,6 @@
-folderpath  D:\UTCN\probleme.txt
-username bucur_david
-password Ferrari2390
+folderpath D:\UTCN\probleme
+username example
+password example123
 
 #folderpath it should not contain spaces
 

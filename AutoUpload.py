@@ -1,7 +1,7 @@
 import os 
 import time 
 from selenium import webdriver
-import pickle
+import sys
 
 lab=input('In wich lab do you want to upload (ex: 1,2,3) :')
 print('**************************************************************************')
@@ -41,17 +41,20 @@ if __name__ == "__main__":
     #Connecting to the website 
     driver=webdriver.Chrome('chromedriver')
     driver.get('https://helios.utcluj.ro/learn2code/login.php?SID')
+    actualURL='https://helios.utcluj.ro/learn2code/login.php?SID'
     try:
         print("Loging in....")
         login(username,password)
-        print("\n You are logged in!")
-        answer=input('\nDo you want to continue?[y/n]')
+        if(driver.current_url==actualURL):
+            print("\n You are not logged in!\n Plese reset the program and verify your account information in 'info.txt'")
+            sys.exit()
+        answer=input('\nDo you want to continue?[y/n]: ')
         if(answer=='y'):
             #after login selecting the lab you want 
             try:
                 workarea=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[1]/div/table/tbody/tr[3]/td')
                 workarea.click()
-                time.sleep(3)
+                time.sleep(2)
                 #add_link[int(lab)].click()
                 print('The ',labName,' is selected')
                     #moving the os path where the txt files are located
@@ -69,10 +72,13 @@ if __name__ == "__main__":
                                 save.click()
                                 print(elements,' was uploaded!')                  
                 except:
-                    print("Error! Run again!")   
+                    print("Error! Run again!")  
+                    sys.exit()
             except:
                 print("Error!Maybe the lab dosn't exist!")
+                sys.exit()
         else:
-            exit
+            sys.exit()
     except:
         print("Error!")                
+sys.exit()
