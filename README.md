@@ -6,9 +6,12 @@ For MAC users:<br />
 1.You need to install python<br />
 2.Delete the zip<br />
 3.In the "info.txt" change with your information<br />
-4.Open a terminal in the folder where "AutoUpload" is located<br />
-5.Type ' chmod +x AutoUpload.py '<br />
-6.Double click AutoUpload.py 
+4.open a terminal and type " sudo easy_install pip " 
+5.type " sudo pip install --upgrade pip "
+6.type " pip install selenium "
+7.Open a terminal in the folder where "AutoUpload" is located<br />
+8.Type ' chmod +x AutoUpload.py '<br />
+9.Double click AutoUpload.py 
 
 For Windows user: 
 <br />
