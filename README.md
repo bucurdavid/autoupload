@@ -2,7 +2,7 @@
 AutoUpload program for UTCN helios webiste<br />
 ------------------------Setup------------------------------<br />
 
-For MAC users:<br />
+For MAC users:  If you have python installed go to step 4<br>
 1.You need to install python<br />
 2.Delete the zip<br />
 3.In the "info.txt" change with your information<br />
