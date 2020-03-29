@@ -55,7 +55,6 @@ if __name__ == "__main__":
             try:
                 workarea=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[1]/div/table/tbody/tr[3]/td')
                 workarea.click()
-                time.sleep(2)
                 #add_link[int(lab)].click()
                 print('The ',labName,' is selected')
                     #moving the os path where the txt files are located
