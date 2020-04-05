@@ -6,7 +6,6 @@ import sys
 
 lab=input('In wich lab do you want to upload (ex: 1,2,3) :')
 print('**************************************************************************')
-row=input('\n_____________________Please count______________________\nHow many these "[add new file]" are up to your lab(inclusive): ')
 if(int(lab)<10):
     labName='lab0'+lab
 else:
@@ -49,10 +48,13 @@ if __name__ == "__main__":
         if(driver.current_url==actualURL):
             print("\n You are not logged in!\n Plese reset the program and verify your account information in 'info.txt'")
             sys.exit()
+        workarea=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[1]/div/table/tbody/tr[3]/td')
+        workarea.click()
         answer=input('\nDo you want to continue?[y/n]: ')
         if(answer=='y'):
             #after login selecting the lab you want 
             try:
+                row=input('\n_____________________Please count______________________\nHow many these "[add new file]" are up to your lab(inclusive): ')
                 workarea=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[1]/div/table/tbody/tr[3]/td')
                 workarea.click()
                 #add_link[int(lab)].click()
