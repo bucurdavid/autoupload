@@ -1,0 +1,8 @@
+folderpath D:\UTCN\probleme.txt
+username example
+password example123
+
+#folderpath it should not contain spaces
+
+#the spaces in this file must remain the same
+-----EX-----: username example

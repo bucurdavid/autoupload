@@ -2,16 +2,26 @@
 import os 
 import time 
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 import sys
 
 lab=input('In wich lab do you want to upload (ex: 1,2,3) :')
 print('**************************************************************************')
-if(int(lab)<10):
-    labName='lab0'+lab
-else:
-    labName='lab'+lab    
+def lab_name():
+    if(lab=='lab'):
+        labName = lab
+        return labName
+    if(int(lab)<10):
+        labName='lab0'+lab
+        return labName
+    else:
+        labName='lab'+lab  
+        return labName
+ 
 
-print('We are selecting the ',labName,' problems!')
+
+
+print('We are selecting the ',lab_name(),' problems!')
 
 # function that takes the login information from the txt file 
 def information():
@@ -27,7 +37,6 @@ def information():
 
 username,password,folderPath=information()
 
-
 def login(username,password):
     usernameInput=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[1]/td[2]/input')
     usernameInput.send_keys(username)
@@ -39,7 +48,7 @@ def login(username,password):
 if __name__ == "__main__":
     #login varialbes and folder path
     #Connecting to the website 
-    driver=webdriver.Chrome('chromedriver')
+    driver=webdriver.Chrome(ChromeDriverManager().install())
     driver.get('https://helios.utcluj.ro/learn2code/login.php?SID')
     actualURL='https://helios.utcluj.ro/learn2code/login.php?SID'
     try:
@@ -50,29 +59,36 @@ if __name__ == "__main__":
             sys.exit()
         workarea=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[1]/div/table/tbody/tr[3]/td')
         workarea.click()
+        time.sleep(2)
+
+        checked_upload=driver.find_elements_by_class_name('href1')
+        for items in checked_upload:
+            check=items.text
+            print(check)
+
         answer=input('\nDo you want to continue?[y/n]: ')
         if(answer=='y'):
             #after login selecting the lab you want 
             try:
                 row=input('\n_____________________Please count______________________\nHow many these "[add new file]" are up to your lab(inclusive): ')
-                workarea=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[1]/div/table/tbody/tr[3]/td')
-                workarea.click()
                 #add_link[int(lab)].click()
-                print('The ',labName,' is selected')
+                print('The ',lab_name(),' is selected')
                     #moving the os path where the txt files are located
                 extensions='.txt'
                 os.chdir(folderPath)
                 fileName=os.listdir()
+                actualURL='https://helios.utcluj.ro/learn2code/work_area.php?SID'
                 try:
-                        for elements in fileName:
-                            if(labName in elements and extensions in elements):
-                                add_link=driver.find_elements_by_class_name('href2')
-                                add_link[int(row)-1].click()
-                                link=folderPath+'\\'+elements
-                                uploadBtn=driver.find_element_by_class_name('input1').send_keys(link)
-                                save=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[7]/td/button')
-                                save.click()
-                                print(elements,' was uploaded!')                  
+                    for elements in fileName:
+                        if(lab_name() in elements and extensions in elements):
+                            add_link=driver.find_elements_by_class_name('href2')
+                            add_link[int(row)-1].click()
+                            link=folderPath+'\\'+elements
+                            uploadBtn=driver.find_element_by_class_name('input1').send_keys(link)
+                            save=driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/form/div/table/tbody/tr[7]/td/button')
+                            save.click()
+                            if(driver.current_url==actualURL):
+                                print(elements+" was uploaded!")                
                 except:
                     print("Error! Run again!")  
                     sys.exit()
